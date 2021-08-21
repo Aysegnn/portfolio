@@ -25,6 +25,22 @@ $row=$anasayfa->fetch(PDO::FETCH_OBJ);
                  Anasayfa Ayarları
              </div>
              <div class="box-body">
+             <?php 
+               if(@$_GET['durum']=="ok"){
+             ?>
+               <div class="alert alert-success">
+                 Bilgileriniz Başarıyla Güncellendi
+             </div>
+             <?php 
+               }
+               if(@$_GET['durum']=="no"){
+             ?>
+              <div class="alert alert-danger">
+                Hata Oluştu.
+             </div>
+             <?php 
+               }
+             ?>
                  <form action="" method="post">
                      <div class="form-group">
                          <label for="">Yazı 1</label>
@@ -56,9 +72,11 @@ $row=$anasayfa->fetch(PDO::FETCH_OBJ);
      ]);
 
      if($guncelle){
-         echo "Güncelleme Başarılı";
+        
+        header("location:anasayfa.php?durum=ok");
+
      }else{
-         echo  "Güncelleme Başarısız";
+        header("location:anasayfa.php?durum=no");
      }
  }
 
