@@ -312,6 +312,11 @@
                         <i class="fa fa-th"></i> <span>Anasayfa</span>
 					</a>
                 </li>
+                <li>
+                     <a href="calismalar.php">
+                        <i class="fa fa-th"></i> <span>Çalışmalar</span>
+					</a>
+                </li>
 			</ul>
         </section>
         <!-- /.sidebar -->
