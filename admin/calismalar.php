@@ -49,7 +49,61 @@ $row=$anasayfa->fetch(PDO::FETCH_OBJ);
 
 </section>
 
+<section class="content">
+    <div class="col-md-12">
+        <div class="row">
+         <div class="box">
+             <div class="box-header">
+              Çalışmalarım
+             </div>
+             <div class="box-body">
+            <table class="table table-striped">
+                <thead>
+                    <th>ID</th>
+                    <th>Başlık</th>
+                    <th>Açıklama</th>
+                    <th>İşlemler</th>
+                </thead>
+                <tbody>
+                    <?php
+                        $calismalar=$conn->query("SELECT * FROM calismalar")->fetchAll(PDO::FETCH_OBJ);
+                        foreach($calismalar as $row){
+                    ?>
+                    <tr>
+                        <td><?= $row->id?></td>
+                        <td><?= $row->baslik?></td>
+                        <td><?= $row->aciklama?></td>
+                        <td>
+                            <a href="guncelle.php?id=<?= $row->id?>" ><i class="fa fa-edit text-primary"></i></a>
+                            <a href="?sil=<?= $row->id?>" ><i class="fa fa-trash text-danger"></i></a>
+                            
+                        </td>
+                    </tr>
+                        
+                   <?php
+                        }
+                    ?>
+                </tbody>
+            </table>
+             </div>
+         </div>
+        </div>
+    </div>
+
+</section>
 <?php
+
+
+if(@$_GET["sil"]){
+    $sil=$conn->prepare("DELETE FROM calismalar WHERE id=:silinecekid");
+    $sil->execute([
+        "silinecekid"=>$_GET["sil"]
+    ]);
+
+    if($sil){
+        header("location:calismalar.php");
+    }
+}
 
 if($_POST){
     $resimAdi=$_FILES["resim"]["name"];

@@ -32,49 +32,28 @@ $row=$anasayfa->fetch(PDO::FETCH_OBJ);
 
 							<p></p>
 
+							
+<?php
+  $calismalar=$conn->query("SELECT * FROM calismalar")->fetchAll(PDO::FETCH_OBJ);
+?>
+
 							<div class="row">
+								<?php
+                                   foreach($calismalar as $row){
+								?>
 								<div class="4u 12u$(mobile)">
 									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
+										<a href="detay.php?id=<?= $row->id ?>" class="image fit"><img src="C:/xampp/htdocs/portfolio/admin/assets/uploads/<?= $row->resim?>" alt=""  height="200"/></a>
 										<header>
-											<h3>Ipsum Feugiat</h3>
+											<h3><?= $row->baslik?></h3>
 										</header>
 									</article>
-									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
-										<header>
-											<h3>Rhoncus Semper</h3>
-										</header>
-									</article>
+									
 								</div>
-								<div class="4u 12u$(mobile)">
-									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a>
-										<header>
-											<h3>Magna Nullam</h3>
-										</header>
-									</article>
-									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic05.jpg" alt="" /></a>
-										<header>
-											<h3>Natoque Vitae</h3>
-										</header>
-									</article>
-								</div>
-								<div class="4u$ 12u$(mobile)">
-									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
-										<header>
-											<h3>Dolor Penatibus</h3>
-										</header>
-									</article>
-									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
-										<header>
-											<h3>Orci Convallis</h3>
-										</header>
-									</article>
-								</div>
+							
+								<?php
+								   }
+								?>
 							</div>
 
 						</div>
